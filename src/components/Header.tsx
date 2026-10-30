@@ -1,11 +1,12 @@
 import { ShoppingBag, User, Heart } from 'lucide-react'
 import { CategoryMenu } from './CategoryMenu'
+import { Link } from '@tanstack/react-router'
 
 export function Header(){
     return(
         <header className="border-b border-gray-200">
             <div className="mx-auto flex max-w-7xl items-center gap-8 px-4 py-4">
-                <span className="text-2xl font-bold tracking-widest text-olive">BookstoreApp</span>
+              <Link to="/" className="text-2xl font-bold tracking-widest text-olive">BookstoreApp</Link>
                 <input type="search"
                 placeholder="Τι ψάχνεις;"
                 className="flex-1 rounded-full border border-black bg-white/60 px-5 py-3 outline-none"
