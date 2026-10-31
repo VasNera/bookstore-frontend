@@ -1,4 +1,5 @@
 import type { ProductSummary } from "../types/product";
+import { Link } from "@tanstack/react-router";
 
 interface ProductCardProps { 
     product: ProductSummary
@@ -7,7 +8,10 @@ interface ProductCardProps {
 export function ProductCard({product}: ProductCardProps){
     
     return(
-        <div className="overflow-hidden rounded-lg border border-brown/20 bg-white/60">
+        <Link
+  to="/products/$productId"
+  params={{ productId: String(product.id) }}
+  className="block overflow-hidden rounded-lg border border-brown/20 bg-white/60 transition hover:shadow-md">
             <img src={product.imageUrl} alt={product.title} 
             className="aspect-[2/3] w-full object-cover"/>
             <div className="p-3">
@@ -24,7 +28,7 @@ export function ProductCard({product}: ProductCardProps){
               
               </div>
 
-        </div>
+        </Link>
     )
 }
 
