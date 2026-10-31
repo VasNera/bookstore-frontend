@@ -1,5 +1,5 @@
 import type { Page } from "../types/page"
-import type { ProductSummary } from "../types/product";
+import type { productDetail, ProductSummary } from "../types/product";
 import { apiGet } from "./client";
 import type { ProductFilters } from "../types/productFilters";
 
@@ -13,6 +13,10 @@ export function fetchProducts(filters: ProductFilters){
         if( value !== undefined)params.set(key, String(value))
     })
 return apiGet<Page<ProductSummary>>(`/products?${params}`)
+}
+
+export function fetchProduct(id: string){
+    return apiGet<productDetail>(`/products/${id}`)
 }
 
 
