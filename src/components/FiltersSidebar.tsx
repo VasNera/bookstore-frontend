@@ -22,7 +22,7 @@ export function FiltersSidebar({filters, onChange}: FiltersSidebarProps){
     function clearAll(){
         setMinPrice('')
         setMaxPrice('')
-        onChange({categoryId: undefined, minPrice: undefined, maxPrice: undefined})
+        onChange({categoryId: undefined, minPrice: undefined, maxPrice: undefined, search: undefined })
     }
     
      return (

@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { fetchProducts } from '../api/products'
 import { ProductCard } from '../components/ProductCard'
-import { FiltersSidebar } from '../components/FiltersSidebar'
 import { ResultsToolbar } from '../components/ResultsToolbar'
 import { Pagination } from '../components/Pagination'
 import type { ProductFilters } from '../types/productFilters'
@@ -16,6 +15,7 @@ export const Route = createFileRoute('/products')({
     sort: typeof search.sort === 'string' ? search.sort : undefined,
     size: search.size ? Number(search.size) : undefined,
     page: search.page ? Number(search.page) : 0,
+    search: search.search != null && search.search != '' ? String(search.search): undefined,
   }),
   component: ProductsPage,
 })
@@ -36,7 +36,7 @@ function ProductsPage() {
   return (
      <ShopLayout filters={filters} onChange={updateFilters}>
     <section>
-      <h1 className="mb-4 text-2xl font-bold text-olive">Προϊόντα</h1>
+      <h1 className="mb-4 text-2xl font-bold text-olive">{filters.search ? `Αποτελέσματα για «${filters.search}»` : 'Προϊόντα'}</h1>
       {products.isPending && <p>Φόρτωση...</p>}
       {products.error && <p>Σφάλμα: {products.error.message}</p>}
       {products.data && (
