@@ -29,7 +29,7 @@ function ProductPage(){
     queryFn:() => fetchProductReviews(productId)
   })
 
-  if(product.isPending) return <p>Φόρτωση...</p>
+  if (product.isPending) return <div className="min-h-[70vh]"><p>Φόρτωση...</p></div>
   if(product.error) return <p>Δεν βρέθηκε το προιόν</p>
 
   const p = product.data
