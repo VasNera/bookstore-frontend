@@ -1,14 +1,17 @@
-import { ShoppingBag, User, Heart, Search } from 'lucide-react'
+import { ShoppingBag, User, Heart, LogOut } from 'lucide-react'
 import { CategoryMenu } from './CategoryMenu'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useState, type SubmitEvent } from 'react'
+import { useAuth } from '../auth/auth-context'
 
 
 export function Header(){
 
 
     const navigate = useNavigate()
+    const {user, signOut} = useAuth()
     const [text, setText] = useState('')
+    
 
     function handleSubmit(e: SubmitEvent<HTMLFormElement>){
         e.preventDefault()
@@ -29,10 +32,26 @@ export function Header(){
                 />
                 </form>
                  <div className="flex items-center gap-6 text-brown">
-                    <button className="flex flex-col items-center text-sm hover:text-olive">
-                        <User size={26}/>
-                        Προφίλ
-                    </button>
+                   {user ? (
+  <>
+    <div className="flex flex-col items-center text-sm">
+      <User size={26} />
+      {user.username}
+    </div>
+    <button
+      onClick={signOut}
+      className="flex flex-col items-center text-sm hover:text-olive"
+    >
+      <LogOut size={26} />
+      Έξοδος
+    </button>
+  </>
+) : (
+  <Link to="/login" className="flex flex-col items-center text-sm hover:text-olive">
+    <User size={26} />
+    Σύνδεση
+  </Link>
+)}
                     <button className="flex flex-col items-center text-sm hover:text-olive">
                         <Heart size={26}/>
                         Αγαπημένα
