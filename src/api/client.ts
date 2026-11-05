@@ -1,6 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL
 
 const TOKEN_KEY = 'token'
+export const AUTH_EXPIRED_EVENT = 'auth:expired'
 
 export const tokenStorage = {
     get: () => localStorage.getItem(TOKEN_KEY),
@@ -36,6 +37,9 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   })
 
   if (!response.ok) {
+    if (response.status === 401 && token) {
+  window.dispatchEvent(new Event(AUTH_EXPIRED_EVENT))
+}
     const data = await response.json().catch(() => null)
     throw new ApiError(
       response.status,
