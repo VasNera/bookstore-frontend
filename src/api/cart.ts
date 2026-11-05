@@ -10,11 +10,11 @@ export function addToCart(productId: number, quantity: number){
 }
 
 export function updateCartItem(productId: number, quantity: number){
-    return apiPatch<Cart>('/cart/items/${productId}', {quantity})
+    return apiPatch<Cart>(`/cart/items/${productId}`, {quantity})
 }
 
 export function removeCartItem(productId: number){
-    return apiDelete<Cart>('/cart/items/${productId')
+    return apiDelete<Cart>(`/cart/items/${productId}`)
 }
 
 export function clearCart(){
