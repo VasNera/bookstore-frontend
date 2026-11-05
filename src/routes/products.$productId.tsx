@@ -4,6 +4,7 @@ import { fetchProduct } from '../api/products'
 import { fetchProductReviews } from '../api/reviews'
 import { ReviewList } from '../components/ReviewList'
 import type { Availability } from '../types/product'
+import { AddToCart } from '../components/AddToCart'
 
 export const Route = createFileRoute('/products/$productId')({
   component: ProductPage,
@@ -73,6 +74,9 @@ function ProductPage(){
           </p>
 
           {p.description && <p className="mb-6 text-brown">{p.description}</p>}
+          <div className="mb-6">
+          <AddToCart productId={p.id} stock={p.stock} />
+           </div>
 
           <dl className="grid grid-cols-[10rem_1fr] gap-y-1 text-brown">
             {specs
