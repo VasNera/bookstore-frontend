@@ -3,6 +3,7 @@ import { CategoryMenu } from './CategoryMenu'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useState, type SubmitEvent } from 'react'
 import { useAuth } from '../auth/auth-context'
+import { useCart } from '../hooks/useCart'
 
 
 export function Header(){
@@ -11,6 +12,8 @@ export function Header(){
     const navigate = useNavigate()
     const {user, signOut} = useAuth()
     const [text, setText] = useState('')
+    const cart = useCart()
+    const cartCount = cart.data?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0
     
 
     function handleSubmit(e: SubmitEvent<HTMLFormElement>){
@@ -33,34 +36,38 @@ export function Header(){
                 </form>
                  <div className="flex items-center gap-6 text-brown">
                    {user ? (
-  <>
-    <div className="flex flex-col items-center text-sm">
-      <User size={26} />
-      {user.username}
-    </div>
-    <button
-      onClick={signOut}
-      className="flex flex-col items-center text-sm hover:text-olive"
-    >
-      <LogOut size={26} />
-      Έξοδος
-    </button>
-  </>
-) : (
-  <Link to="/login" className="flex flex-col items-center text-sm hover:text-olive">
-    <User size={26} />
-    Σύνδεση
-  </Link>
-)}
+                <>
+              <div className="flex flex-col items-center text-sm">
+              <User size={26} />
+                {user.username}
+              </div>
+                <button
+                  onClick={signOut}
+                 className="flex flex-col items-center text-sm hover:text-olive"
+                  >
+                <LogOut size={26} />
+                 Έξοδος
+                  </button>
+                  </>
+                  ) : (
+                  <Link to="/login" className="flex flex-col items-center text-sm hover:text-olive">
+                  <User size={26} />
+                  Σύνδεση
+                    </Link>
+                    )}
                     <button className="flex flex-col items-center text-sm hover:text-olive">
                         <Heart size={26}/>
                         Αγαπημένα
                     </button>
-                    <button className="flex flex-col items-center text sm
-                    hover:text-olive">
-                        <ShoppingBag size={26}/>
-                        Καλάθι
-                    </button>
+                    <Link to="/cart" className="relative flex flex-col items-center text-sm hover:text-olive">
+                   <ShoppingBag size={26} />
+                    {cartCount > 0 && (
+                    <span className="absolute -right-2 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-olive px-1 text-xs text-white">
+                    {cartCount}
+                    </span>
+                    )}
+                     Καλάθι
+                    </Link>
 
                  </div>
             </div>
