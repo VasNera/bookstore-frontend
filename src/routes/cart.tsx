@@ -113,12 +113,12 @@ function CartPage(){
         <p className="text-xl text-brown">
           Σύνολο: <span className="font-bold text-olive">{totalAmount.toFixed(2)} €</span>
         </p>
-        <button
-          disabled
-          className="rounded bg-olive px-6 py-2 font-medium text-white disabled:opacity-60"
+         <Link
+          to="/checkout"
+          className="rounded bg-olive px-6 py-2 font-medium text-white"
         >
           Ολοκλήρωση παραγγελίας
-        </button>
+        </Link>
       </div>
     </div>
   )
