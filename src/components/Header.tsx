@@ -60,10 +60,10 @@ export function Header(){
                   Σύνδεση
                     </Link>
                     )}
-                    <button className="flex flex-col items-center text-sm hover:text-olive">
-                        <Heart size={26}/>
-                        Αγαπημένα
-                    </button>
+                    <Link to="/favourites" className="flex flex-col items-center text-sm hover:text-olive">
+                    <Heart size={26}/>
+                     Αγαπημένα
+                    </Link>
                     <Link to="/cart" className="relative flex flex-col items-center text-sm hover:text-olive">
                    <ShoppingBag size={26} />
                     {cartCount > 0 && (
