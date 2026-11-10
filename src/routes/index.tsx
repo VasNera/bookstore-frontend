@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { CategoryCard } from '../components/CategoryCard'
 import { useQuery } from '@tanstack/react-query'
 import { fetchFeaturedProducts } from '../api/products'
 import { fetchLatestReviews } from '../api/reviews'
@@ -6,6 +7,7 @@ import { ProductCard } from '../components/ProductCard'
 import { ReviewCarousel } from '../components/ReviewCarousel'
 import { ShopLayout } from '../components/ShopLayout'
 import type { ProductFilters } from '../types/productFilters'
+import { useCategories } from '../hooks/useCategories'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -13,6 +15,7 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   const navigate = useNavigate()
+  const categories = useCategories()
 
   const products = useQuery({
     queryKey: ['products', 'featured'],
@@ -30,6 +33,16 @@ function HomePage() {
   return (
     <ShopLayout filters={{}} onChange={goToProducts}>
       <div className="space-y-10">
+                <section>
+          <h2 className="mb-4 text-2xl font-bold text-olive">Κατηγορίες</h2>
+          {categories.data && (
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+              {categories.data.map((category) => (
+                <CategoryCard key={category.id} category={category} />
+              ))}
+            </div>
+          )}
+        </section>
         <section>
           <h2 className="mb-4 text-2xl font-bold text-olive">Προτάσεις</h2>
           {products.isPending && <p>Φόρτωση...</p>}

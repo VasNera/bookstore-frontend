@@ -7,6 +7,7 @@ import type { Availability } from '../types/product'
 import { AddToCart } from '../components/AddToCart'
 import { FavouriteButton } from '../components/FavouriteButton'
 import { ReviewForm } from '../components/ReviewForm'
+import { NotFound } from '../components/NotFound'
 
 export const Route = createFileRoute('/products/$productId')({
   component: ProductPage,
@@ -33,7 +34,7 @@ function ProductPage(){
   })
 
   if (product.isPending) return <div className="min-h-[70vh]"><p>Φόρτωση...</p></div>
-  if(product.error) return <p>Δεν βρέθηκε το προιόν</p>
+  if (product.error) return <NotFound />
 
   const p = product.data
 

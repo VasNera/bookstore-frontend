@@ -1,8 +1,10 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { NotFound } from '../components/NotFound'
 
 export const Route = createRootRoute({
+  notFoundComponent: NotFound,
   component: () => (
     <div className="flex min-h-screen flex-col bg-cream">
       <Header />

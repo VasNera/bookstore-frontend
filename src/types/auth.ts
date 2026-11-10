@@ -17,3 +17,26 @@ export interface RegisterRequest {
     phone: string
     email: string
 }
+
+export interface UserProfile {
+    uuid: string
+    username: string
+    firstname: string
+    lastname: string
+    phone: string
+    email: string
+    role: string
+}
+
+export interface UpdateProfileRequest {
+    password?: string
+    firstname: string
+    lastname: string
+    phone: string
+    email: string
+}
+
+export interface ChangePasswordRequest {
+    oldPassword: string
+    newPassword: string
+}

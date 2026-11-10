@@ -37,10 +37,10 @@ export function Header(){
                  <div className="flex items-center gap-6 text-brown">
                    {user ? (
                 <>
-              <div className="flex flex-col items-center text-sm">
-              <User size={26} />
-                {user.username}
-              </div>
+                <Link to="/profile" className="flex flex-col items-center text-sm hover:text-olive">
+                <User size={26} />
+                 {user.username}
+                  </Link>
               <Link to="/orders" className="flex flex-col items-center text-sm hover:text-olive">
                 <Package size={26} />
                 Παραγγελίες
