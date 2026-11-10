@@ -1,6 +1,6 @@
 import type { Page } from "../types/page"
-import type { Review } from "../types/review"
-import { apiGet } from "./client"
+import type { Review, ReviewRequest } from "../types/review"
+import { apiGet,apiPost } from "./client"
 
 export function fetchLatestReviews(){
     return apiGet<Page<Review>>('/reviews/latest')
@@ -8,4 +8,8 @@ export function fetchLatestReviews(){
 
 export function fetchProductReviews(productId:string){
     return apiGet<Page<Review>>(`/products/${productId}/reviews`)
+}
+
+export function createReview(productId: string, data: ReviewRequest){
+    return apiPost<Review>(`/products/${productId}/reviews`, data)
 }
