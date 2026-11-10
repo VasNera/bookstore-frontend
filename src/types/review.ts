@@ -7,3 +7,8 @@ export interface Review{
     productTitle: string
 
 }
+
+export interface ReviewRequest {
+    rating: number
+    comment: string
+}
