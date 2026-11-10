@@ -23,9 +23,9 @@ export function Header(){
 
     return(
         <header className="border-b border-gray-200">
-            <div className="mx-auto flex max-w-7xl items-center gap-8 px-4 py-4">
+            <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-3 px-4 py-4">
               <Link to="/" className="text-2xl font-bold tracking-widest text-olive">BookstoreApp</Link>
-                 <form onSubmit={handleSubmit} className="flex-1">
+                 <form onSubmit={handleSubmit} className="order-last w-full md:order-none md:w-auto md:flex-1">
                 <input
                 type="search"
                 placeholder="Τι ψάχνεις;"
@@ -34,7 +34,7 @@ export function Header(){
                 className="w-full rounded-full border border-black bg-white/60 px-5 py-3 outline-none focus:border-olive"
                 />
                 </form>
-                 <div className="flex items-center gap-6 text-brown">
+                 <div className="ml-auto flex items-center gap-4 text-brown md:gap-6">
                    {user ? (
                 <>
                 <Link to="/profile" className="flex flex-col items-center text-sm hover:text-olive">
