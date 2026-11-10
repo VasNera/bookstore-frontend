@@ -5,6 +5,7 @@ import { fetchProductReviews } from '../api/reviews'
 import { ReviewList } from '../components/ReviewList'
 import type { Availability } from '../types/product'
 import { AddToCart } from '../components/AddToCart'
+import { FavouriteButton } from '../components/FavouriteButton'
 
 export const Route = createFileRoute('/products/$productId')({
   component: ProductPage,
@@ -57,7 +58,7 @@ function ProductPage(){
         <div>
           <p className="text-sm text-brown/70">{p.categoryName}</p>
           <h1 className="mb-4 text-3xl font-bold text-olive">{p.title}</h1>
-
+          <FavouriteButton productId={p.id} />
           <div className="mb-2 flex items-baseline gap-3">
             {p.discountPrice !== null ? (
               <>
@@ -76,6 +77,7 @@ function ProductPage(){
           {p.description && <p className="mb-6 text-brown">{p.description}</p>}
           <div className="mb-6">
           <AddToCart productId={p.id} stock={p.stock} />
+          
            </div>
 
           <dl className="grid grid-cols-[10rem_1fr] gap-y-1 text-brown">
