@@ -1,4 +1,4 @@
-import { ShoppingBag, User, Heart, LogOut } from 'lucide-react'
+import { ShoppingBag, User, Heart, LogOut, Package } from 'lucide-react'
 import { CategoryMenu } from './CategoryMenu'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useState, type SubmitEvent } from 'react'
@@ -41,6 +41,11 @@ export function Header(){
               <User size={26} />
                 {user.username}
               </div>
+              <Link to="/orders" className="flex flex-col items-center text-sm hover:text-olive">
+                <Package size={26} />
+                Παραγγελίες
+              </Link>
+               
                 <button
                   onClick={signOut}
                  className="flex flex-col items-center text-sm hover:text-olive"

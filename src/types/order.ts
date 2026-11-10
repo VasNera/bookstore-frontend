@@ -45,3 +45,10 @@ export interface Order {
   items: OrderItem[]
 }
 
+export interface OrderSummary {
+  orderNumber: string
+  createdAt: string
+  orderStatus: OrderStatus
+  paymentStatus: PaymentStatus
+  totalAmount: number
+}
