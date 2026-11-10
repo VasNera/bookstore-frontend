@@ -1,5 +1,6 @@
 import type { ProductSummary } from "../types/product";
 import { Link } from "@tanstack/react-router";
+import { FavouriteButton } from "./FavouriteButton";
 
 interface ProductCardProps { 
     product: ProductSummary
@@ -11,7 +12,10 @@ export function ProductCard({product}: ProductCardProps){
         <Link
   to="/products/$productId"
   params={{ productId: String(product.id) }}
-  className="block overflow-hidden rounded-lg border border-brown/20 bg-white/60 transition hover:shadow-md">
+  className="relative block overflow-hidden rounded-lg border border-brown/20 bg-white/60 transition hover:shadow-md">
+            <div className="absolute right-2 top-2">
+                <FavouriteButton productId={product.id} />
+            </div>
             <img src={product.imageUrl} alt={product.title} 
             className="aspect-[2/3] w-full object-cover"/>
             <div className="p-3">
@@ -31,4 +35,3 @@ export function ProductCard({product}: ProductCardProps){
         </Link>
     )
 }
-
