@@ -63,7 +63,7 @@ function OrderDetailPage() {
 
       {cancelError && <p className="text-sm text-red-700">{cancelError}</p>}
 
-      {o.orderStatus === 'PENDING' && (
+      {(o.orderStatus === 'PENDING' || o.orderStatus === 'CONFIRMED') && (
         <button
           onClick={() => {
             if (window.confirm('Θέλεις σίγουρα να ακυρώσεις την παραγγελία;')) cancel.mutate()

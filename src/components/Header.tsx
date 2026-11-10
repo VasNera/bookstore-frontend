@@ -1,9 +1,10 @@
-import { ShoppingBag, User, Heart, LogOut, Package } from 'lucide-react'
+import { ShoppingBag, User, Heart, LogOut, Package, Settings } from 'lucide-react'
 import { CategoryMenu } from './CategoryMenu'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useState, type SubmitEvent } from 'react'
 import { useAuth } from '../auth/auth-context'
 import { useCart } from '../hooks/useCart'
+import { useIsAdmin } from '../hooks/useIsAdmin'
 
 
 export function Header(){
@@ -14,6 +15,7 @@ export function Header(){
     const [text, setText] = useState('')
     const cart = useCart()
     const cartCount = cart.data?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0
+    const isAdmin = useIsAdmin()
     
 
     function handleSubmit(e: SubmitEvent<HTMLFormElement>){
@@ -41,6 +43,12 @@ export function Header(){
                 <User size={26} />
                  {user.username}
                   </Link>
+                  {isAdmin && (
+                <Link to="/admin/orders" className="flex flex-col items-center text-sm hover:text-olive">
+                  <Settings size={26} />
+                  Διαχείριση
+                </Link>
+              )}
               <Link to="/orders" className="flex flex-col items-center text-sm hover:text-olive">
                 <Package size={26} />
                 Παραγγελίες
