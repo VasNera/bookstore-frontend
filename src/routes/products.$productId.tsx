@@ -6,6 +6,7 @@ import { ReviewList } from '../components/ReviewList'
 import type { Availability } from '../types/product'
 import { AddToCart } from '../components/AddToCart'
 import { FavouriteButton } from '../components/FavouriteButton'
+import { ReviewForm } from '../components/ReviewForm'
 
 export const Route = createFileRoute('/products/$productId')({
   component: ProductPage,
@@ -95,6 +96,7 @@ function ProductPage(){
 
       <section>
         <h2 className="mb-4 text-2xl font-bold text-olive">Κριτικές</h2>
+         <ReviewForm productId={productId} />
         {reviews.isPending && <p>Φόρτωση...</p>}
         {reviews.data && reviews.data.content.length === 0 && (
           <p className="text-brown">Δεν υπάρχουν ακόμα κριτικές για αυτό το προϊόν.</p>
