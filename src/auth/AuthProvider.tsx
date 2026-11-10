@@ -32,6 +32,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(USER_KEY)
     queryClient.removeQueries({ queryKey: ['cart'] })
     queryClient.removeQueries({ queryKey: ['favourites'] })
+    queryClient.removeQueries({ queryKey: ['profile'] })
+    queryClient.removeQueries({ queryKey: ['orders'] })
+    queryClient.removeQueries({ queryKey: ['order'] })
     setUser(null)
   }, [queryClient])
 
