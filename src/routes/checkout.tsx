@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import { ApiError } from '../api/client'
 import { createOrder } from '../api/orders'
 import { useAuth } from '../auth/auth-context'
@@ -95,7 +95,7 @@ function CheckoutPage() {
         ? 'Κάτι πήγε στραβά.'
         : null
 
-  function handleSubmit(e: SubmitEvent) {
+  function handleSubmit(e: SubmitEvent<HTMLFormElement>)  {
     e.preventDefault()
     const isInvoice = documentType === 'INVOICE'
     const data: OrderRequest = {
