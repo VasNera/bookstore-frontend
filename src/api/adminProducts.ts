@@ -1,6 +1,15 @@
 import type { Page } from '../types/page'
 import type { ProductSummary } from '../types/product'
-import { apiDelete, apiGet, apiPatch } from './client'
+import { PRODUCT_TYPE_PATH, type ProductType } from '../types/adminProduct'
+import { apiDelete, apiGet, apiPatch, apiPost, apiPut } from './client'
+
+export function createProduct(type: ProductType, payload: unknown) {
+  return apiPost<ProductSummary>(`/admin/${PRODUCT_TYPE_PATH[type]}`, payload)
+}
+
+export function updateProduct(type: ProductType, id: number, payload: unknown) {
+  return apiPut<ProductSummary>(`/admin/${PRODUCT_TYPE_PATH[type]}/${id}`, payload)
+}
 
 export function fetchAdminProducts(page: number, search?: string) {
   const params = new URLSearchParams({ page: String(page), size: '10' })
