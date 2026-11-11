@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { Star, Trash2 } from 'lucide-react'
 import { useState, type SubmitEvent } from 'react'
 import {
@@ -64,6 +64,12 @@ function AdminProductsPage() {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold text-olive">Προϊόντα</h1>
+        <Link
+          to="/admin/products/new"
+          className="rounded bg-olive px-4 py-2 font-medium text-white"
+        >
+          + Νέο προϊόν
+        </Link>
         <form onSubmit={handleSearch} className="flex gap-2">
           <input
             type="search"
@@ -107,7 +113,13 @@ function AdminProductsPage() {
                       <td className="p-3">
                         <div className="flex items-center gap-3">
                           <img src={p.imageUrl} alt="" className="h-14 w-10 rounded object-cover" />
-                          <span className="font-medium">{p.title}</span>
+                          <Link
+                            to="/admin/products/$productId"
+                            params={{ productId: String(p.id) }}
+                            className="font-medium text-olive hover:underline"
+                          >
+                            {p.title}
+                          </Link>
                         </div>
                       </td>
                       <td className="p-3">
