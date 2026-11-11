@@ -1,0 +1,13 @@
+# Σερβίρει το frontend (nginx) στο http://localhost:5173
+# Το backend πρέπει να τρέχει ήδη (docker compose στο repo του bookstore).
+#   docker compose up --build
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        # Η διεύθυνση που καλεί ο BROWSER (όχι εσωτερικό όνομα του Docker)
+        VITE_API_URL: http://localhost:8080/api/v1
+    ports:
+      - "5173:80"   # host 5173 → nginx 80 (το backend επιτρέπει CORS από το 5173)
